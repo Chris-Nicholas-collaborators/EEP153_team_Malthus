@@ -1,15 +1,9 @@
-import argparse
 import wbdata
 import datetime
 import sys
 from typing import Any
-import os
 
 country_codes = []
-
-def print_path():
-    module_path = os.path.abspath('.')
-    print(module_path)
 
 with open("./src/team_malthus/iso_countries.txt") as file:
     for item in file:
@@ -43,9 +37,6 @@ def validate(
 
     low_age = None
     high_age = None
-
-    # if place not in country_codes:
-        # raise ValueError(f"place {place} not in ISO 3166 3 letter names")
 
 
 def get_indicator_id(age: int, sex: str) -> str:
