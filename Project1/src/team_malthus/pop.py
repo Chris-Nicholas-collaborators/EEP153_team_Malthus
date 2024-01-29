@@ -65,7 +65,7 @@ def population(year: int, sex: str, age_range: str, place: str) -> int:
     age_range -- age range of the form low:high inclusive. Numbers above
         80 will return the entire "80 and up" range, whereas other values will
         include a linear proportion of the 5-year range bucket. For example,
-        a range of 13:21 will obtain 40% of the population ages 10-14, all of
+        a range of 13-21 will obtain 40% of the population ages 10-14, all of
         ages 15-19, and 40 % of the ages 20-24 buckets. 70:90 will return all
         of 70-74, 75-79, 80 and above. 90:100 will thrown an error.
     place -- an ISO 3166 3-leter country or region identifier
