@@ -68,7 +68,7 @@ def population(year: int, sex: str, age_range: str, place: str) -> int:
         a range of 13-21 will obtain 40% of the population ages 10-14, all of
         ages 15-19, and 40 % of the ages 20-24 buckets. 70-90 will return all
         of 70-74, 75-79, 80 and above. 90-100 will throw an error.
-    place -- an ISO 3166 3-leter country or region identifier
+    place -- an ISO 3166 3-letter country or region identifier
     """
     age_range_parts = age_range.split("-")
     low_age_str = age_range_parts[0]
