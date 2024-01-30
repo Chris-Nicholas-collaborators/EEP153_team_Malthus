@@ -1,7 +1,10 @@
-import wbdata
 import datetime
-import sys
-from typing import Any
+from typing import Any, Dict, Tuple
+from pandas import DataFrame
+
+import wbdata
+# World Bank data access object
+# see: https://wbdata.readthedocs.io/en/stable/index.html
 
 country_codes = []
 
@@ -24,7 +27,6 @@ def validate(
         raise ValueError("year must be between 2000 and 2020")
     if sex not in ["m", "f", "p"]:
         raise ValueError("sex must be m, f, or p (for total)")
-
     if (
         (low_age < 0)
         or (low_age > 79)
@@ -33,27 +35,40 @@ def validate(
         or (low_age > high_age)
     ):
         print("invalid date range: low must be between 0 and 80 ; high < 120")
-        sys.exit(-1)
-
-    low_age = None
-    high_age = None
+        raise ValueError('age values invalid')
 
 
-def get_indicator_id(age: int, sex: str) -> str:
+def get_indicator_id(age: int, sex: str):
     """Get the right 5-year indicator this age falls into."""
     # get lower bound - do modulo 5
     lower_bucket_bound = (int(age / 5)) * 5
     upper_bucket_bound = lower_bucket_bound + 4
+    upper_bucket_bound_str = None
     if upper_bucket_bound > 79:
         upper_bucket_bound = "UP"
-    indicator = "SP.POP." + str(lower_bucket_bound) + str(upper_bucket_bound)
+        upper_bucket_bound_str = "UP"
+    else:
+        upper_bucket_bound_str = str(upper_bucket_bound)
+        if upper_bucket_bound < 10:
+            upper_bucket_bound_str = '0' + str(upper_bucket_bound)
+            
+    lower_bucket_bound_str = str(lower_bucket_bound)
+    if lower_bucket_bound < 10:
+        lower_bucket_bound_str = '0' + lower_bucket_bound_str
+    indicator = "SP.POP." + lower_bucket_bound_str + upper_bucket_bound_str
     # presumes queries are already validated
     if sex == "m":
         indicator += ".MA"
     else:
         indicator += ".FE"
 
-    return indicator
+    sex_label = None
+    if sex == 'm':
+        sex_label = 'male'
+    else:
+        sex_label = 'female'
+    indicator_label = f'{sex_label}_{lower_bucket_bound}_{upper_bucket_bound}'
+    return indicator, indicator_label
 
 
 def population(year: int, sex: str, age_range: str, place: str) -> int:
@@ -85,7 +100,7 @@ def population(year: int, sex: str, age_range: str, place: str) -> int:
 
     for age in range(low_age, high_age + 1):
         if sex == "p" or sex == "m":
-            indicator_to_use = get_indicator_id(age, "m")
+            indicator_to_use, indicator_label = get_indicator_id(age, "m")
             this_indicator = None
             if indicator_to_use not in indicators:
                 # cache it
@@ -96,7 +111,7 @@ def population(year: int, sex: str, age_range: str, place: str) -> int:
             this_indicator = indicators[indicator_to_use]
             population_count += int((0.2) * this_indicator[0]["value"])
         if sex == "p" or sex == "f":
-            indicator_to_use = get_indicator_id(age, "f")
+            indicator_to_use, indicator_label = get_indicator_id(age, "f")
             this_indicator = None
             if indicator_to_use not in indicators:
                 # cache it
@@ -109,6 +124,19 @@ def population(year: int, sex: str, age_range: str, place: str) -> int:
 
     return population_count
 
+def population_df(country: str):
+    """Get a dataframe with global age breakdowns, indexed by Region or Country"""
+    indicators = {}
+    # just blindly go through the age range in male and female
+    # deduping along the way
+    for age in range(0,81):
+        for sex in ['m', 'f']:
+            next_indicator, next_indicator_label = get_indicator_id(age, sex)
+            if next_indicator not in indicators:
+                indicators[next_indicator] = next_indicator_label
+    world = wbdata.get_dataframe(indicators, country)
+    return world
+
 
 if __name__ == "__main__":
     test_pop = population(
@@ -117,3 +145,6 @@ if __name__ == "__main__":
         age_range="13-24",
         place="USA")
     print(test_pop)
+
+    test_df = population_df("USA")
+    print('done')
