@@ -124,7 +124,7 @@ def population(year: int, sex: str, age_range: str, place: str) -> int:
 
     return population_count
 
-def population_df(country: str):
+def population_df(country: Any):
     """Get a dataframe with global age breakdowns, indexed by Region or Country"""
     indicators = {}
     # just blindly go through the age range in male and female
@@ -146,5 +146,5 @@ if __name__ == "__main__":
         place="USA")
     print(test_pop)
 
-    test_df = population_df("USA")
+    test_df = population_df(country=['USA', 'NAM'])
     print('done')
