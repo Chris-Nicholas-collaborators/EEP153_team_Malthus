@@ -8,7 +8,7 @@ import wbdata
 
 country_codes = []
 
-with open("./src/team_malthus/iso_countries.txt") as file:
+with open("../src/team_malthus/iso_countries.txt") as file:
     for item in file:
         country_codes.append(item.strip())
 

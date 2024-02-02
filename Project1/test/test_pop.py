@@ -1,5 +1,9 @@
 import unittest
 from unittest.mock import patch
+import sys
+
+sys.path.append('../src')
+
 from pop import validate, get_indicator_id, population
 
 
