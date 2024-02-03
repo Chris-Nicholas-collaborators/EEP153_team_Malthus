@@ -1,6 +1,5 @@
 import datetime
-from typing import Any, Dict, Tuple
-from pandas import DataFrame
+from typing import Any
 
 import wbdata
 
@@ -427,7 +426,8 @@ def population(year: int, sex: str, age_range: str, place: str) -> int:
 
 
 def population_df(country: Any):
-    """Get a dataframe with global age breakdowns, indexed by Region or Country"""
+    """Get a dataframe with global age breakdowns,
+    indexed by Region or Country."""
     indicators = {}
     # just blindly go through the age range in male and female
     # deduping along the way

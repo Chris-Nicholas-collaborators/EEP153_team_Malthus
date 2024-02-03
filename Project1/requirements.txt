@@ -2,3 +2,7 @@ wbdata
 pandas
 flake8
 black
+plotly
+numpy
+cufflinks
+
