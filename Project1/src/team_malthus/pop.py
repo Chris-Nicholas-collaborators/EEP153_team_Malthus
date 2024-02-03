@@ -378,7 +378,7 @@ def population(year: int, sex: str, age_range: str, place: str) -> int:
         include a linear proportion of the 5-year range bucket. For example,
         a range of 13-21 will obtain 40% of the population ages 10-14, all of
         ages 15-19, and 40 % of the ages 20-24 buckets. 70-90 will return all
-        of 70-74, 75-79, 80 and above. 90-100 will throw an error.
+        of 70-74, 75-79, 80 and above. high ages are clamped to 84
     place -- an ISO 3166 3-letter country or region identifier
     """
     age_range_parts = age_range.split("-")
@@ -387,6 +387,8 @@ def population(year: int, sex: str, age_range: str, place: str) -> int:
     # trying to cast to int will throw a ValueErrors
     low_age = int(low_age_str)
     high_age = int(high_age_str)
+    if high_age > 84:
+        high_age = 84
     validate(year, sex, low_age, high_age, place)
 
     # walk through the years, and identify the relevant indicators to fetch.
