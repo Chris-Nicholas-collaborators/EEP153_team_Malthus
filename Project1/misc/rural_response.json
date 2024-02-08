@@ -1,0 +1,122 @@
+{
+    "status": "started",
+    "status_code": 200,
+    "error": false,
+    "error_message": null,
+    "data": {
+        "agesexpyramid": [
+            {
+                "class": "0",
+                "age": "0 to 1",
+                "male": 1058.88,
+                "female": 1025.59
+            },
+            {
+                "class": "1",
+                "age": "1 to 5",
+                "male": 3968.55,
+                "female": 3868.93
+            },
+            {
+                "class": "10",
+                "age": "10 to 15",
+                "male": 4889.68,
+                "female": 4621.74
+            },
+            {
+                "class": "15",
+                "age": "15 to 20",
+                "male": 5011.68,
+                "female": 4441.34
+            },
+            {
+                "class": "20",
+                "age": "20 to 25",
+                "male": 4958.34,
+                "female": 4178.82
+            },
+            {
+                "class": "25",
+                "age": "25 to 30",
+                "male": 4760.27,
+                "female": 3781.56
+            },
+            {
+                "class": "30",
+                "age": "30 to 35",
+                "male": 3884.43,
+                "female": 2870.68
+            },
+            {
+                "class": "35",
+                "age": "35 to 40",
+                "male": 3148.87,
+                "female": 2153.48
+            },
+            {
+                "class": "40",
+                "age": "40 to 45",
+                "male": 2569.83,
+                "female": 1813.19
+            },
+            {
+                "class": "45",
+                "age": "45 to 50",
+                "male": 2080.34,
+                "female": 1573.39
+            },
+            {
+                "class": "5",
+                "age": "5 to 10",
+                "male": 4806.71,
+                "female": 4563.63
+            },
+            {
+                "class": "50",
+                "age": "50 to 55",
+                "male": 1554.64,
+                "female": 1247.42
+            },
+            {
+                "class": "55",
+                "age": "55 to 60",
+                "male": 1120.66,
+                "female": 1001.91
+            },
+            {
+                "class": "60",
+                "age": "60 to 65",
+                "male": 877.45,
+                "female": 784.58
+            },
+            {
+                "class": "65",
+                "age": "65 to 70",
+                "male": 630.77,
+                "female": 651.31
+            },
+            {
+                "class": "70",
+                "age": "70 to 75",
+                "male": 399.07,
+                "female": 353.77
+            },
+            {
+                "class": "75",
+                "age": "75 to 80",
+                "male": 208.35,
+                "female": 201.92
+            },
+            {
+                "class": "80",
+                "age": "80 and over",
+                "male": 169.03,
+                "female": 173.68
+            }
+        ]
+    },
+    "taskid": "53a0db70-cd71-5fdf-99a6-fa7182eaf053",
+    "startTime": "2024-02-07 02:11:35.592009",
+    "endTime": "2024-02-07 02:11:50.123286",
+    "executionTime": 15
+}
