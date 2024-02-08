@@ -5,4 +5,6 @@ black
 plotly
 numpy
 cufflinks
-
+Jupyter
+ipykernel
+matplotlib
