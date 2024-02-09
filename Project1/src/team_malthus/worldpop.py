@@ -31,7 +31,10 @@ def population_by_area(year: str, polygon: str) -> Any:
     with urllib.request.urlopen( results_url ) as results_response:
         results_text = results_response.read()
         age_json = json.loads(results_text)
+<<<<<<< Updated upstream
         print(age_json)
+=======
+>>>>>>> Stashed changes
         agesexpyramid_list = age_json['data']['agesexpyramid']
         agesexpyramid_df = pd.DataFrame(agesexpyramid_list)
 
