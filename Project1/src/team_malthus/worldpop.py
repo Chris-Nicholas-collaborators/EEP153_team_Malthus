@@ -38,12 +38,3 @@ def population_by_area(year: str, polygon: str) -> Any:
 
         print('done')
         return agesexpyramid_df
-
-
-
-year = '2020'
-polygon = """{"type":"FeatureCollection","features":[{"type":"Feature","properties":{},"geometry":{ "type": "Polygon", "coordinates": [ [ [ 16.496742359554229, -19.872651217111134 ], [ 19.883257497523321, -19.872651217111134 ], [ 19.883257497523321, -21.948257269414771 ], [ 16.514949430188473, -21.893636057512044 ], [ 16.496742359554229, -19.872651217111134 ] ] ] }}]}"""
-
-area_df = population_by_area(year, polygon)
-
-print('done')
