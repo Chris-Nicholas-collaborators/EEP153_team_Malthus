@@ -405,7 +405,7 @@ def population(year: int, sex: str, age_range: str, place: str) -> int:
             if indicator_to_use not in indicators:
                 # cache it
                 fetched_indicator = wbdata.get_data(
-                    indicator_to_use, country=place, data_date=data_date
+                    indicator_to_use, country=place, date=data_date
                 )
                 indicators[indicator_to_use] = fetched_indicator
             this_indicator = indicators[indicator_to_use]
@@ -416,7 +416,7 @@ def population(year: int, sex: str, age_range: str, place: str) -> int:
             if indicator_to_use not in indicators:
                 # cache it
                 fetched_indicator = wbdata.get_data(
-                    indicator_to_use, country=place, data_date=data_date
+                    indicator_to_use, country=place, date=data_date
                 )
                 indicators[indicator_to_use] = fetched_indicator
             this_indicator = indicators[indicator_to_use]
